@@ -86,6 +86,11 @@ public class PersonController {
     }
 
 
+    /**
+     * RequestBody 能够自动填充泛型子类
+     * @param personParmCommon
+     * @return
+     */
     @PostMapping("/person2")
     public Result getPerson(@Validated @RequestBody Common<PersonParam> personParmCommon) {
         log.info("传入的对象【{}】", personParmCommon);
