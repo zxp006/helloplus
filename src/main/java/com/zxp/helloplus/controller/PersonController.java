@@ -195,6 +195,11 @@ public class PersonController {
     }
 
 
+    /**
+     * 添加注释
+     * @param personParam
+     * @return
+     */
     @RequestMapping("/person8")
     public  Result getPerson8(@SelfParam(value = "person",required = false) Common<PersonParam> personParam){
         log.info("参数={}",personParam);
