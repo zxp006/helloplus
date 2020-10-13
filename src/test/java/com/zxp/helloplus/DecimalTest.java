@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.jar.JarEntry;
 
 /**
  * @author zxp
@@ -59,12 +60,17 @@ public class DecimalTest {
         bigDecimal=bigDecimal.setScale(2, RoundingMode.HALF_UP);
         log.info(bigDecimal.toString());
         BigDecimal multiply = bigDecimal.multiply(new BigDecimal(0.3));
-        multiply=multiply.setScale(1,BigDecimal.ROUND_UP);
+//        multiply=multiply.setScale(1,BigDecimal.ROUND_UP);
+        multiply=new BigDecimal(String.valueOf(multiply));
         log.info(multiply.toString());
 
 
         Long a=1000L;
         Long b=1000L;
         log.info(String.valueOf(a.equals(b)));
+
+
+        Long m=1000L;
+        log.info("m={}",m*0.3);
     }
 }
