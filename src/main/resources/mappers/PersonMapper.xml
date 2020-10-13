@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zxp.helloplus.mapper.PersonMapper">
+
+
+    <select id="getPersonOfId" resultType="map" parameterType="map">
+     SELECT * FROM person WHERE id =2
+    </select>
+
+    <select id="getPersons" resultType="map" parameterType="map">
+        SELECT * FROM person
+    </select>
+
+
+</mapper>
