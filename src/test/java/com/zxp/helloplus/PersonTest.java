@@ -32,6 +32,18 @@ public class PersonTest {
         personList.forEach(person -> System.out.println(person));
     }
 
+    /**
+     * 自定义获取用户
+     */
+    @Test
+    public void getPersonOfId() {
+        Map person = personMapper.getPersonOfId();
+        log.info("获取的对象:" + person);
+    }
+
+    /**
+     * 系统方法获取分页数据
+     */
     @Test
     public void getByPage() {
         IPage<Person> page = new Page<>(2, 2);
@@ -40,13 +52,9 @@ public class PersonTest {
         personIPage.getRecords().forEach(person -> System.out.println(person));
     }
 
-
-    @Test
-    public void getPersonOfId() {
-        Map person = personMapper.getPersonOfId();
-        log.info("获取的对象:" + person);
-    }
-
+    /**
+     * 自定义map获取分页数据
+     */
     @Test
     public void getPersonsByPage() {
         IPage<Person> page = new Page<>(2, 2);
@@ -122,19 +130,23 @@ public class PersonTest {
     }
 
 
+    /**
+     * 版本通用,没法指定字段更新为null
+     *  Preparing: Preparing: UPDATE person SET name=?, work=?, money=? WHERE id=?
+     *  Parameters: 测试更新07(String), 工程师(String), 1000000.0(Double), 7(Integer)
+     */
     @Test
     public  void updatePersonById(){
         Person person=new Person();
         person.setName("测试更新07");
+        person.setWork("工程师");
         person.setMoney(1000000d);
+        person.setDesct(null);
         person.setId(7);
         int i=personMapper.updateById(person);
         log.info("更新了{}行",i);
     }
 
-    @Test
-    public  void saveOrUpdate(){
 
-    }
 
 }
