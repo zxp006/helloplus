@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import sun.security.pkcs11.P11TlsKeyMaterialGenerator;
 
+import javax.sound.midi.SysexMessage;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -19,35 +20,36 @@ import java.util.stream.Collectors;
  * @create 2020-09-23 13:43
  */
 
-@SpringBootTest
+
 @Slf4j
 public class StreamTest {
 
-    static  List<People> peopleList = new ArrayList<>();
+    static List<People> peopleList = new ArrayList<>();
+    static List<People> peopleList2 = new ArrayList<>();
 
     @BeforeAll
-    public  static  void  init(){
-        peopleList.add(new People("欧阳雪",18,"中国",'F'));
-        peopleList.add(new People("Tom",24,"美国",'M'));
-        peopleList.add(new People("Harley",22,"英国",'F'));
-        peopleList.add(new People("向天笑",20,"中国",'M'));
-        peopleList.add(new People("李康",22,"中国",'M'));
-        peopleList.add(new People("小梅",20,"中国",'F'));
-        peopleList.add(new People("何雪",21,"中国",'F'));
-        peopleList.add(new People("李康",22,"中国",'M'));
+    public static void init() {
+        peopleList.add(new People("欧阳雪", 18, "中国", 'F'));
+        peopleList.add(new People("Tom", 24, "美国", 'M'));
+        peopleList.add(new People("Harley", 22, "英国", 'F'));
+        peopleList.add(new People("向天笑", 20, "中国", 'M'));
+        peopleList.add(new People("李康", 22, "中国", 'M'));
+        peopleList.add(new People("小梅", 20, "中国", 'F'));
+        peopleList.add(new People("何雪", 21, "中国", 'F'));
+        peopleList.add(new People("李康", 22, "中国", 'M'));
     }
 
     @Test
-    public  void  testFilter(){
+    public void testFilter() {
         List<People> collect = peopleList.stream().filter(people -> {
-           return people.getAge() > 20 && people.getSex() == 'F';
+            return people.getAge() > 20 && people.getSex() == 'F';
         }).collect(Collectors.toList());
         collect.forEach(System.out::println);
 
         System.out.println("---------------------");
-        List<People> list= new ArrayList<>();
+        List<People> list = new ArrayList<>();
         peopleList.forEach(people -> {
-            if(people.getAge() > 20 && people.getSex() == 'F'){
+            if (people.getAge() > 20 && people.getSex() == 'F') {
                 list.add(people);
             }
         });
@@ -58,7 +60,7 @@ public class StreamTest {
      * Stream中间操作--映射
      */
     @Test
-    public void  testMap(){
+    public void testMap() {
         Set<Person> personSet = peopleList.stream().map(people -> {
             return new Person().setName(people.getName()).setDesct(people.getCountry());
         }).collect(Collectors.toSet());
@@ -70,7 +72,7 @@ public class StreamTest {
      * 自然排序(Comparable)
      */
     @Test
-    public  void  testSorted1(){
+    public void testSorted1() {
         peopleList.stream().sorted().forEach(System.out::println);
     }
 
@@ -78,7 +80,7 @@ public class StreamTest {
      * 定制排序（Comparator）
      */
     @Test
-    public void testSorted2(){
+    public void testSorted2() {
         List<People> collect = peopleList.stream().sorted((p1, p2) -> {
             if (p1.getAge().equals(p2.getAge())) {
                 return -p1.getName().compareTo(p2.getName());
@@ -91,15 +93,40 @@ public class StreamTest {
     }
 
     @Test
-    public  void  testMax(){
-        Optional<People> max = peopleList.stream().filter(people -> people.getSex()=='M').max((p1, p2) -> p1.getAge() - p2.getAge());
-       log.info("最大年龄的男性{}",max.get());
+    public void testMax() {
+        Optional<People> max = peopleList.stream().filter(people -> people.getSex() == 'M').max((p1, p2) -> p1.getAge() - p2.getAge());
+        log.info("最大年龄的男性{}", max.get());
     }
 
     @Test
-    public void  testAllMatch(){
+    public void testAllMatch() {
         boolean b = peopleList.stream().allMatch(people -> people.getAge() > 20);
-        log.info("所有人都大于20岁"+b);
+        log.info("所有人都大于20岁" + b);
+    }
+
+    /**
+     * 测试方法引用
+     * 获取年龄最新的外国人
+     */
+    @Test
+    public void testF() {
+        peopleList.stream().filter(people -> !people.getCountry().equals("中国")).forEach(peopleList2::add);
+        peopleList2.forEach(System.out::println);
+        Optional<People> first = peopleList2.stream().sorted((p1, p2) -> {
+            return p1.getAge() - p2.getAge();
+        }).findFirst();
+        log.info(first.toString());
+    }
+
+    @Test
+    void testOptional() {
+        People person=new People();
+        Optional<People> optionalPeople = Optional.empty();
+        Optional<People> optionalPeople2 = Optional.ofNullable(null);
+        optionalPeople.orElse(person);
+        optionalPeople.orElseGet(()->new People());
+        System.out.println(optionalPeople2.get());
+        System.out.println(optionalPeople);
     }
 
 }
