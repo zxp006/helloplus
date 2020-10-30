@@ -42,7 +42,6 @@ public class Person {
     private Integer age;
 
     /**
-     *
      * 过滤不想序列化的字段
      */
     @JsonIgnore
@@ -60,11 +59,8 @@ public class Person {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Double money;
     @JsonFormat(pattern = "yyyy-MM-dd")
-
     @TableField(exist = false)
     private Date birth;
     @TableField(exist = false)
     private Date loggin;
-
-
 }

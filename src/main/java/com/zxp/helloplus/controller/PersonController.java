@@ -38,24 +38,14 @@ import java.util.Set;
 @RestController
 @Slf4j
 public class PersonController {
-    /*
-    100
-    200
-    300
-    500
-    600
-    700
-    800
-    900
-    1000
-     */
+
     @Autowired
     HttpServletRequest request;
 
     @Autowired
     ObjectMapper objectMapper;
 
-    @RequestMapping("/person")
+    @GetMapping("/person")
     /**
      * @Validated 不指定分组时，默认校验default组
      */
@@ -92,7 +82,6 @@ public class PersonController {
         String desc = request.getParameter("desc");
         String address = request.getParameter("address");
         String mobile = request.getParameter("mobile");
-        String body = RequestUtil.getBody(request);
         return Result.sucess(person);
     }
 
@@ -164,9 +153,9 @@ public class PersonController {
         log.info("传入的Common【{}】,【{}】", personParmCommon, personParam);
         Person person = new Person(1, "哈哈", 20, "书法", "行政", 10000d, new Date(), new Date());
         //获取get传参
-        String getid = request.getParameter("id");
-        String address = request.getParameter("address");
-        String mobile = request.getParameter("mobile");
+//        String getid = request.getParameter("id");
+//        String address = request.getParameter("address");
+//        String mobile = request.getParameter("mobile");
 
         if (request.getMethod().equals(HttpMethod.POST.name())) {
             String contentType = request.getContentType();

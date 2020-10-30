@@ -60,9 +60,9 @@ public class RequestUtil {
     }
 
     public static Object getParams(HttpServletRequest servletRequest) {
+        String contentType = servletRequest.getContentType();
+        log.info("当前请求ContentType={},要验证的ContentType={}", contentType, ContentType.MULTIPART_FORM_DATA.getMimeType());
         if (servletRequest.getMethod().equals(HttpMethod.POST.name())) {
-            String contentType = servletRequest.getContentType();
-            log.info("请求的ContentType={},要验证的ContentType={}", contentType, ContentType.MULTIPART_FORM_DATA.getMimeType());
             //multipart/form-data 不支持流读取参数
             //application/x-www-form-urlencoded  支持流和getParam读取参数
             if (StringUtils.isNotBlank(contentType) && contentType.startsWith(ContentType.MULTIPART_FORM_DATA.getMimeType())) {
@@ -71,7 +71,6 @@ public class RequestUtil {
                 return getBody(servletRequest);
             }
         } else {
-            getBody(servletRequest);
             return getParameters(servletRequest);
         }
     }
