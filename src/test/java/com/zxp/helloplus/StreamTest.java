@@ -1,11 +1,14 @@
 package com.zxp.helloplus;
 
+import ch.qos.logback.core.net.SyslogOutputStream;
 import com.zxp.helloplus.model.People;
 import com.zxp.helloplus.model.Person;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 import sun.security.pkcs11.P11TlsKeyMaterialGenerator;
 
 import javax.sound.midi.SysexMessage;
@@ -119,14 +122,17 @@ public class StreamTest {
     }
 
     @Test
-    void testOptional() {
-        People person=new People();
-        Optional<People> optionalPeople = Optional.empty();
-        Optional<People> optionalPeople2 = Optional.ofNullable(null);
-        optionalPeople.orElse(person);
-        optionalPeople.orElseGet(()->new People());
-        System.out.println(optionalPeople2.get());
-        System.out.println(optionalPeople);
+    public  void  testList(){
+        List<Integer> collect = peopleList.stream().filter(people -> people.getAge() > 30).map(people -> people.getAge()).collect(Collectors.toList());
+        collect.forEach(System.out::println);
     }
 
+    @Test
+    public  void  testEmptyList(){
+        List<People> list=null;
+        System.out.println("list=null="+(CollectionUtils.isEmpty(list)));
+        //list=null的情况下，以下语句报空指针异常
+//        System.out.println(list.isEmpty());
+//        list.forEach(System.out::println);
+    }
 }

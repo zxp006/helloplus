@@ -1,9 +1,8 @@
 package com.zxp.helloplus.controller;
 
-import com.zxp.helloplus.utils.TestUtil;
+import com.zxp.helloplus.utils.AsyncUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,7 +20,7 @@ import java.util.concurrent.Callable;
 public class AsyncController {
 
     @Autowired
-    private TestUtil testUtil;
+    private AsyncUtil testUtil;
     @RequestMapping("/async")
     public String doTask() throws InterruptedException{
         long currentTimeMillis = System.currentTimeMillis();

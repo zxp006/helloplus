@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @Slf4j
-public class TestUtil {
+public class AsyncUtil {
     @Async
     public void task1() throws InterruptedException{
         long currentTimeMillis = System.currentTimeMillis();
