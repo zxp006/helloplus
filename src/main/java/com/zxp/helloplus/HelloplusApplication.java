@@ -8,6 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.web.client.RestTemplate;
 import springfox.documentation.oas.annotations.EnableOpenApi;
 
 @SpringBootApplication
@@ -30,5 +31,10 @@ public class HelloplusApplication {
         // 开启 count 的 join 优化,只针对部分 left join
         paginationInterceptor.setCountSqlParser(new JsqlParserCountOptimize(true));
         return paginationInterceptor;
+    }
+
+    @Bean
+    public RestTemplate restTemplate(){
+        return  new RestTemplate();
     }
 }

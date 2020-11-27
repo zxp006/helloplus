@@ -17,6 +17,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import javax.naming.Name;
 import javax.servlet.http.HttpServletRequest;

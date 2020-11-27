@@ -135,4 +135,9 @@ public class StreamTest {
 //        System.out.println(list.isEmpty());
 //        list.forEach(System.out::println);
     }
+
+    @Test
+    public  void  testFun(){
+        peopleList.stream().map(People::getName).forEach(System.out::println);
+    }
 }
