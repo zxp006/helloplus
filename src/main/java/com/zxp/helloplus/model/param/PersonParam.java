@@ -25,6 +25,6 @@ public class PersonParam implements Serializable {
     @Min(value = 0, message = "性别只能为0和1: 0=女1=男")
     private Short sex;
 
-    private String desc;
+    private String name;
 
 }

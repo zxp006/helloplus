@@ -11,5 +11,7 @@
         SELECT * FROM person
     </select>
 
-
+    <update id="updatePersonById">
+        update  person set name =#{name} where id=#{id}
+   </update>
 </mapper>

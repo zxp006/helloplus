@@ -66,7 +66,7 @@ public class CodeGenerator {
         // 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
         //dsc.setUrl("jdbc:mysql://localhost/test?serverTimezone=UTC&useUnicode=true&characterEncoding=utf8&useSSL=false");
-        dsc.setUrl("jdbc:mysql://192.168.15.127:3306/mapi_butler?characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&autoReconnect=true&failOverReadOnly=false&zeroDateTimeBehavior=convertToNull&useSSL=false");
+        dsc.setUrl("jdbc:mysql://192.168.200.154:3306/mapi_butler?characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&autoReconnect=true&failOverReadOnly=false&zeroDateTimeBehavior=convertToNull&useSSL=false");
         // dsc.setSchemaName("public");
         dsc.setDriverName("com.mysql.cj.jdbc.Driver");
         dsc.setUsername("root");
@@ -99,7 +99,7 @@ public class CodeGenerator {
         // 写于父类中的公共字段
 //        strategy.setSuperEntityColumns("id");
         //表名，多个英文逗号分割
-        strategy.setInclude("t_driver_area".split(","));
+        strategy.setInclude("t_third_interface_log".split(","));
         //乐观锁
         strategy.setVersionFieldName("version");
         strategy.setRestControllerStyle(true);//开启驼峰命名

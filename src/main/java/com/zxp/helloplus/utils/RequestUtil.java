@@ -64,11 +64,17 @@ public class RequestUtil {
         log.info("当前请求ContentType={},要验证的ContentType={}", contentType, ContentType.MULTIPART_FORM_DATA.getMimeType());
         if (servletRequest.getMethod().equals(HttpMethod.POST.name())) {
             //multipart/form-data 不支持流读取参数
-            //application/x-www-form-urlencoded  支持流和getParam读取参数
             if (StringUtils.isNotBlank(contentType) && contentType.startsWith(ContentType.MULTIPART_FORM_DATA.getMimeType())) {
                 return getParameters(servletRequest);
             } else {
-                return getBody(servletRequest);
+                if (StringUtils.isNotBlank(contentType) && contentType.startsWith(ContentType.APPLICATION_FORM_URLENCODED.getMimeType())) {
+                    //application/x-www-form-urlencoded  同时支持流和getParam读取参数
+                    return  getParameters(servletRequest);
+//                    return  getBody(servletRequest); //id=2&desc=统一form-urlencoded&param={"name":"梦雪","sex":1,"age":20}
+                } else {
+                    //application/json
+                    return getBody(servletRequest);
+                }
             }
         } else {
             return getParameters(servletRequest);

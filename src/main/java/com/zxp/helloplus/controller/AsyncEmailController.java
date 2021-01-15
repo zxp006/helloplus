@@ -48,6 +48,7 @@ public class AsyncEmailController {
     public void testAsyncTask() throws InterruptedException {
         Thread.sleep(10000);
         System.out.println("异步任务执行完成！");
+        log.info("线程:"+Thread.currentThread().getThreadGroup()+" ~ "+Thread.currentThread().getName()+"异步执行");
     }
 
 

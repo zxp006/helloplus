@@ -1,6 +1,7 @@
 package com.zxp.helloplus.utils;
 
 import com.zxp.helloplus.controller.AsyncEmailController;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.aop.framework.AopContext;
 import org.springframework.aop.support.AopUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 @Service
+@Slf4j
 public class EmailService {
 
     @Autowired
@@ -18,11 +20,12 @@ public class EmailService {
     public void testSyncTask() throws InterruptedException {
         Thread.sleep(10000);
         System.out.println("异步任务执行完成！");
+        log.info("testSyncTask线程:"+Thread.currentThread().getThreadGroup()+" ~ "+Thread.currentThread().getName()+"异步执行");
     }
 
 
     public void asyncCallTwo() throws InterruptedException {
-        //这样调用同类下的异步方法是不起作用的
+        //这样调用同类下的异步方法是不起作用的，所以这里还是同步方法
         this.testSyncTask();
 
         boolean isAop = AopUtils.isAopProxy(EmailService.class);//是否是代理对象；
@@ -34,5 +37,6 @@ public class EmailService {
 //        System.out.println(emailService == proxy ? true : false);
         emailService.testSyncTask();
         System.out.println("end!!!");
+        log.info("asyncCallTwo线程:"+Thread.currentThread().getThreadGroup()+" ~ "+Thread.currentThread().getName()+"异步执行");
     }
 }

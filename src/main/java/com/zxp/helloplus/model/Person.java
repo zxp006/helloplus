@@ -63,4 +63,18 @@ public class Person {
     private Date birth;
     @TableField(exist = false)
     private Date loggin;
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                ", desct='" + desct + '\'' +
+                ", work='" + work + '\'' +
+                ", money=" + money +
+                ", birth=" + birth +
+                ", loggin=" + loggin +
+                '}';
+    }
 }

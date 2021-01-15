@@ -20,8 +20,8 @@ public class Common<T> {
 
     @Max(value = 100,message = "id最大值不超过100")
     private  Integer id;
-    @NotEmpty(message = "姓名不能为空")
-    private String name;
+    @NotEmpty(message = "描述不能为空")
+    private String desc;
 
     @Valid
     @NotNull(message = "param不能为空")

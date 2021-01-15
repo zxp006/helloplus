@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.zxp.helloplus.model.Person;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
 import java.util.Map;
@@ -18,4 +19,6 @@ public interface  PersonMapper extends BaseMapper<Person> {
     Map<String,Object> getPersonOfId();
 
     List<Map<String, Object>> getPersons(IPage page);
+
+    int updatePersonById(int id, String name);
 }

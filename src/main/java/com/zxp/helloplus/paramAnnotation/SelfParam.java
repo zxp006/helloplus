@@ -11,7 +11,7 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface SelfParam {
-    String value() default "注入参数";
-
+    String value() default "泛型参数的全类名";
+    Class<?> subClass ();
     boolean required() default true;
 }

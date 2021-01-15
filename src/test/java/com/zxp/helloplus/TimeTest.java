@@ -23,14 +23,15 @@ public class TimeTest {
         SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd");
         SimpleDateFormat simpleDateFormat2=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         SimpleDateFormat simpleDateFormat3=new SimpleDateFormat("yyyy-MM-dd 00:00:00");
-//        calendar.add(Calendar.DATE, 0);
+        calendar.add(Calendar.DATE, -7);
         calendar.set(Calendar.HOUR_OF_DAY, 0);
         calendar.set(Calendar.MINUTE, 0);
         calendar.set(Calendar.SECOND, 0);
         calendar.set(Calendar.MILLISECOND, 0);
         long t=calendar.getTime().getTime();
-        log.info("当前:"+simpleDateFormat2.format(calendar.getTimeInMillis()));
-        log.info("当前2:"+simpleDateFormat3.format(new Date()));
+        log.info("当前："+calendar.getTime());
+        log.info("当前2:"+simpleDateFormat2.format(calendar.getTimeInMillis()));
+        log.info("当前3:"+simpleDateFormat3.format(new Date()));
     }
 
 

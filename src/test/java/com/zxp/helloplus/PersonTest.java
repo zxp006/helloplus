@@ -141,9 +141,16 @@ public class PersonTest {
         person.setName("测试更新07");
         person.setWork("工程师");
         person.setMoney(1000000d);
-        person.setDesct(null);
+//        person.setDesct(null);
         person.setId(7);
         int i=personMapper.updateById(person);
+        log.info("更新了{}行",i);
+    }
+
+    @Test
+    public  void updatePersonByIdOfMap(){
+        Person person=new Person();
+        int i=personMapper.updatePersonById(7,"测试");
         log.info("更新了{}行",i);
     }
 

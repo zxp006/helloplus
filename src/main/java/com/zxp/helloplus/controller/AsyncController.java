@@ -2,6 +2,7 @@ package com.zxp.helloplus.controller;
 
 import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.fasterxml.jackson.databind.util.JSONPObject;
+import com.zxp.helloplus.config.SchoolConfig;
 import com.zxp.helloplus.model.Person;
 import com.zxp.helloplus.utils.AsyncUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -25,6 +26,9 @@ import java.util.concurrent.Callable;
 public class AsyncController {
 
     @Autowired
+    private SchoolConfig schoolConfig;
+
+    @Autowired
     private AsyncUtil testUtil;
 
     @RequestMapping("/async")
@@ -39,7 +43,7 @@ public class AsyncController {
     @RequestMapping(value = "/email/callableReq")
     @ResponseBody
     public Callable<Person> callableReq() {
-        System.out.println("外部线程：" + Thread.currentThread().getName());
+        System.out.println("外部线程："+Thread.currentThread().getThreadGroup()+"~~~" + Thread.currentThread().getName());
         Callable r = new Callable<Person>() {
             @Override
             public Person call() throws Exception {
@@ -47,7 +51,7 @@ public class AsyncController {
                 Person person = new Person();
                 person.setId(10);
                 person.setDesct("测试");
-                System.out.println("内部线程：" + Thread.currentThread().getName());
+                System.out.println("内部线程："+Thread.currentThread().getThreadGroup()+"~~~" + Thread.currentThread().getName());
                 return person;
             }
         };

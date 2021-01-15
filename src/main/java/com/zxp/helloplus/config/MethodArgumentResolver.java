@@ -35,11 +35,15 @@ public class MethodArgumentResolver implements HandlerMethodArgumentResolver {
         String name = servletRequest.getParameter("name");
         log.info("参数名称={},参数值={},{}", parameterName, object);
         SelfParam selfParam = methodParameter.getParameterAnnotation(SelfParam.class);
-        log.info("注解值为:{},{}", selfParam.value(), selfParam.required());
+        Class<?> subClass = null;
+        if (selfParam != null) {
+            subClass = selfParam.subClass();
+        }
+        log.info("注解值为:{},{}", subClass, selfParam.required());
         Common<PersonParam> common = new Common<>();
-        common.setId(1).setName("通用参数");
+        common.setId(1).setDesc("通用参数");
         PersonParam personParam = new PersonParam();
-        personParam.setAge(12).setDesc("通用用户").setSex((short) 0);
+        personParam.setAge(12).setName("通用用户").setSex((short) 0);
         common.setParam(personParam);
         return common;
     }

@@ -16,3 +16,9 @@ mybatis-plus:
 server:
   port: 8080
 
+school:
+  properties:
+    class1:
+      name: 计算机科学与技术
+      numbers: 30
+      grad: 2020
