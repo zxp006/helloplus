@@ -37,8 +37,8 @@ public class TimeTest {
 
     @Test
     public  void testArray() {
-        String[] names = new String[] { "A", "B", "C" };
-        String[] extended = {"1","2","3","4","5"};
+        String[] names = new String[] { "A", "B", "C" ,"D"};
+        String[] extended = {"1","2","3","4","5","6"};
 
         log.info("extended长度前="+extended.length);
 //        System.arraycopy(names, 0, extended, 0, names.length);
