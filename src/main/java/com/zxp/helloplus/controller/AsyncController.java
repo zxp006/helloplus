@@ -35,7 +35,7 @@ public class AsyncController {
     public String doTask() throws InterruptedException {
         long currentTimeMillis = System.currentTimeMillis();
         testUtil.task1();
-        testUtil.task2();
+        testUtil.task();
         long currentTimeMillis1 = System.currentTimeMillis();
         return "task任务总耗时:" + (currentTimeMillis1 - currentTimeMillis) + "ms " + new Random().nextInt(100);
     }

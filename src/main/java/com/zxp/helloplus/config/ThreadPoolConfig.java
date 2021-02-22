@@ -19,7 +19,7 @@ public class ThreadPoolConfig {
  
     private static int keepAliveSeconds=300;
  
-//    @Bean
+    @Bean
     public TaskExecutor jobExecutor() {
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
         executor.setThreadNamePrefix("self_");

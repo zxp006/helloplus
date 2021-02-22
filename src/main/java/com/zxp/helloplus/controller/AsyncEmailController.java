@@ -30,10 +30,11 @@ public class AsyncEmailController {
     public Map<String, Object> asyncCall () {
         Map<String, Object> resMap = new HashMap<String, Object>();
         try{
-			//这样调用同类下的异步方法是不起作用的
-          	//this.testAsyncTask();
-			//通过上下文获取自己的代理对象调用异步方法
-    		AsyncEmailController emailController = (AsyncEmailController)applicationContext.getBean(AsyncEmailController.class);
+            //通过上下文获取自己的代理对象调用异步方法
+            AsyncEmailController emailController = (AsyncEmailController)applicationContext.getBean(AsyncEmailController.class);
+
+            //这样调用同类下的异步方法是不起作用的
+            this.testAsyncTask();
     		emailController.testAsyncTask();
             resMap.put("code",200);
         }catch (Exception e) {

@@ -50,7 +50,7 @@ public class CodeGenerator {
         gc.setFileOverride(false);//是否覆盖原来的文件
 
         // 默认的自定义文件命名，注意 %s 会自动填充表实体属性！
-        gc.setControllerName("%sController");
+//        gc.setControllerName("%sController");
         gc.setServiceName("%sService");
 //      gc.setServiceName("%sService");//去掉service的i前缀
         gc.setServiceImplName("%sServiceImpl");
@@ -65,12 +65,12 @@ public class CodeGenerator {
 
         // 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
-        //dsc.setUrl("jdbc:mysql://localhost/test?serverTimezone=UTC&useUnicode=true&characterEncoding=utf8&useSSL=false");
-        dsc.setUrl("jdbc:mysql://192.168.200.154:3306/mapi_butler?characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&autoReconnect=true&failOverReadOnly=false&zeroDateTimeBehavior=convertToNull&useSSL=false");
+        dsc.setUrl("jdbc:mysql://localhost/test?serverTimezone=UTC&useUnicode=true&characterEncoding=utf8&useSSL=false");
+        //dsc.setUrl("jdbc:mysql://192.168.15.127:3306/mapi_butler?characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&autoReconnect=true&failOverReadOnly=false&zeroDateTimeBehavior=convertToNull&useSSL=false");
         // dsc.setSchemaName("public");
         dsc.setDriverName("com.mysql.cj.jdbc.Driver");
         dsc.setUsername("root");
-        dsc.setPassword("jRoQ#BF%P4IN");
+        dsc.setPassword("root");
 //        dsc.setPassword("jRoQ#BF%P4IN");
         dsc.setDbType(DbType.MYSQL);//数据库类型
         mpg.setDataSource(dsc);
@@ -99,7 +99,7 @@ public class CodeGenerator {
         // 写于父类中的公共字段
 //        strategy.setSuperEntityColumns("id");
         //表名，多个英文逗号分割
-        strategy.setInclude("t_third_interface_log".split(","));
+        strategy.setInclude("products,sh_account,sh_book".split(","));
         //乐观锁
         strategy.setVersionFieldName("version");
         strategy.setRestControllerStyle(true);//开启驼峰命名

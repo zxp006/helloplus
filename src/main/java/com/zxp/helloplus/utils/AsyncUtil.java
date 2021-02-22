@@ -27,4 +27,9 @@ public class AsyncUtil {
         long currentTimeMillis1 = System.currentTimeMillis();
         log.info("线程:"+Thread.currentThread().getThreadGroup()+" ~ "+Thread.currentThread().getName()+"异步执行"+" task2任务耗时:"+(currentTimeMillis1-currentTimeMillis)+"ms");
     }
+
+    @Async
+    public void  task() throws InterruptedException {
+        this.task2();
+    }
 }
